@@ -3,7 +3,14 @@ import java.util.List;
 
 class RodCutting {
   public static void main(String[] args) {
-    ArrayList<Integer> p1 = new ArrayList<Integer>(List.of(1, 5, 8, 9, 10, 17, 17, 20))
+    int n1 = 8;
+    ArrayList<Integer> p1 = new ArrayList<Integer>(List.of(1, 5, 8, 9, 10, 17, 17, 20));
+    // answer is 22
+
+    int n2 = 8;
+    ArrayList<Integer> p2 = new ArrayList<Integer>(List.of(3, 5, 8, 9, 10, 17, 17, 20));
+    // answer is 24
+
   }
 
   // returns the maximum value that can be obtained from cutting a rod
