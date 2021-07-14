@@ -7,8 +7,15 @@ public class BinaryExponentiation {
     int p3 = 200;
     int p4 = 0;
     int p5 = 25;
-    System.out.println(Integer.toString(n1) + "^" + Integer.toString(p1) + " = "
-        + Double.toString(binaryExp(n1, p1)));
+    // System.out.println(Integer.toString(n1) + "^" + Integer.toString(p1) + " = "
+    // + Double.toString(binaryExp(n1, p1)));
+
+    long a = 10123465234878998L;
+    long b = 65746311545646431L;
+    long m = 10005412336548794L;
+    System.out.println(Long.toString(a) + "*" + Long.toString(b) + " % " + Long.toString(m) + " = "
+        + Long.toString(bigNumModuloRec(a, b, m)));
+    // Expected result: 4652135769797794
   }
 
   // raises n to the pth power more efficiently than
@@ -57,5 +64,28 @@ public class BinaryExponentiation {
       p >>= 1; // shifts p's bits over to the right by 1 digit
     }
     return result;
+  }
+
+  // Modulus Variations
+  // --------------------------------------------------------------------------------
+
+  // multiply two big numbers modulo m without bignum arithmetic
+  // the two numbers fit in their given data type but their product does not
+  // assumes that a >= 0
+  // compute a * b mod m
+
+  // decompose the multiplication and refactor it
+  // so that the values we deal with never reach outside the bounds
+  // recursive implementation
+  private static long bigNumModuloRec(long a, long b, long m) {
+    if (a == 0) { // base case
+      return 0;
+    }
+    else if (a % 2 == 0) { // p is even
+      return (2 * bigNumModuloRec(a / 2, b, m)) % m;
+    }
+    else { // p is odd
+      return (2 * bigNumModuloRec((a - 1) / 2, b, m) + b) % m;
+    }
   }
 }
