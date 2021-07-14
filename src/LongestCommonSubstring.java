@@ -1,7 +1,7 @@
 class LongestCommonSubstring {
   public static void main(String[] args) {
     String s1 = "hello there";
-    String s2 = "there is a";
+    String s2 = "hlo";
     String s3 = "is a frog";
 
     System.out.println("Longest common substring between " + s1 + " and " + s2 + " is "
