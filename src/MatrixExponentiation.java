@@ -2,11 +2,9 @@ public class MatrixExponentiation {
   public static void main(String[] args) {
     int n1 = 5;
     int n2 = 100;
-    int p1 = 4;
-    int p2 = 1;
-    int p3 = 200;
-    int p4 = 0;
-    int p5 = 25;
+    int n3 = 1;
+    int n4 = 0;
+    int n5 = 25;
     System.out.println("The " + Integer.toString(n1) + "th fibonacci number is "
         + Integer.toString(fibMatrixExp(n1)));
   }
@@ -18,27 +16,24 @@ public class MatrixExponentiation {
   */
 
   /*
-   * applying this approach to fibonacci means trying to transform [f(n-3),f(n-2),f(n-1)] into
-   * [f(n-2),f(n-1),f(n)], resulting in a 3x3 transformation matrix with a=1,b=1,c=1
+   * applying this approach to fibonacci means trying to transform [f(n-2),f(n-1)] into
+   * [f(n-1),f(n)], resulting in a 3x3 transformation matrix with a=1,b=1,c=1
    * To get to the nth term, this transformation matrix would be applied n-2 times to 
    * the initial base case matrix [f(0),f(1),f(2)],
    * which can be made more efficient by raising the transformation matrix to the power of n-2 and using
    * binary exponentiation
    */
   private static int fibMatrixExp(int n) {
-    int initMatrix[][] = { { 0, 1, 1 } }; // will always be value of [f(0),f(1),f(2)]
-    int a = 1;
-    int b = 1;
-    int c = 1;
-    int transformMatrix[][] = { { a, b, c }, { 1, 0, 0 }, { 0, 1, 0 } };
-    int resultMatrix[][] = multiplyTwoMatrices(initMatrix, matrixExpRec(transformMatrix, n - 2)); // [f(n-2),f(n-1),f(n]
-    return resultMatrix[0][2]; // extracts and returns f(n)
+    int initMatrix[][] = { { 0, 1 } }; // will always be value of [f(0),f(1),f(2)]
+    int transformMatrix[][] = { { 0, 1 }, { 1, 1 } };
+    int resultMatrix[][] = multiplyTwoMatrices(initMatrix, matrixExpRec(transformMatrix, n - 1)); // [f(n-1),f(n]
+    return resultMatrix[0][1]; // extracts and returns f(n)
   }
 
 //recursive implementation of matrix exponentiation
   private static int[][] matrixExpRec(int matrix[][], int p) {
     if (p == 0) { // base case
-      int identityMatrix[][] = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+      int identityMatrix[][] = { { 1, 0 }, { 0, 1 } };
       return identityMatrix;
     }
     else if (p == 1) { // base case
@@ -59,7 +54,7 @@ public class MatrixExponentiation {
   // the dimensions of the matrices to be m1 is a x c and m2 is c x b
   // so the resulting matrix is a x b
   public static int[][] multiplyTwoMatrices(int m1[][], int m2[][]) {
-    int result[][] = new int[3][3];
+    int result[][] = new int[m1.length][m2[0].length];
     for (int i = 0; i < m1.length; i += 1) {
       for (int j = 0; j < m2[0].length; j += 1) {
         result[i][j] = 0;
