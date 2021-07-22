@@ -1,14 +1,16 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class SieveOfEratosthenes {
   public static void main(String[] args) {
-    sieve(60);
+    System.out.println(sieve(60));
   }
 
   // Given a number n, print all primes smaller than or equal to n. It is also
   // given that n is a small, positive number.
-  private static void sieve(int n) {
+  private static List<Integer> sieve(int n) {
     List<Integer> primes = new ArrayList<Integer>(n + 1);
 
     // disregard indexes 0 and 1
@@ -34,6 +36,8 @@ class SieveOfEratosthenes {
 
     // filter out all the disregarded numbers and print out the unmarked numbers,
     // which are the primes
-    primes.stream().filter(num -> num != -1).forEach(System.out::println);
+    Stream<Integer> filtered = primes.stream().filter(num -> num != -1);
+    return filtered.collect(Collectors.toList());
+    // filtered.forEach(System.out::println);
   }
 }
