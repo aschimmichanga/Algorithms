@@ -1,0 +1,12 @@
+# Algorithms So Far (implementing concepts learned in CS5800 Masters Algorithms):
+- Binary Exponentiation
+- Coin Change (Greedy and DP)
+- Linked List Comparison
+- Longest Common Substring (DP)
+- Matrix Exponentiation
+- Merge Sort
+- Permutation Cycles
+- Red Black Tree
+- Rod Cutting (DP)
+- Sieve of Erastosthenes (finding primes up to n)
+- Vanya and Fence (CodeForces)
